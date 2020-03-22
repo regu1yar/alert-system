@@ -41,7 +41,7 @@ void RouterController::handleGet(http_request message) {
 void RouterController::handlePost(http_request message) {
   std::string api_path = requestPath(message);
   try {
-    getHandlerByPath(api_path)->handleGet(message);
+    getHandlerByPath(api_path)->handlePost(message);
   } catch (const std::runtime_error& e) {
     message.reply(status_codes::NotFound);
     std::cerr << e.what() << std::endl;
@@ -51,7 +51,7 @@ void RouterController::handlePost(http_request message) {
 void RouterController::handlePut(http_request message) {
   std::string api_path = requestPath(message);
   try {
-    getHandlerByPath(api_path)->handleGet(message);
+    getHandlerByPath(api_path)->handlePut(message);
   } catch (const std::runtime_error& e) {
     message.reply(status_codes::NotFound);
     std::cerr << e.what() << std::endl;
@@ -61,7 +61,7 @@ void RouterController::handlePut(http_request message) {
 void RouterController::handleHead(http_request message) {
   std::string api_path = requestPath(message);
   try {
-    getHandlerByPath(api_path)->handleGet(message);
+    getHandlerByPath(api_path)->handleHead(message);
   } catch (const std::runtime_error& e) {
     message.reply(status_codes::NotFound);
     std::cerr << e.what() << std::endl;
@@ -71,7 +71,7 @@ void RouterController::handleHead(http_request message) {
 void RouterController::handleDelete(http_request message) {
   std::string api_path = requestPath(message);
   try {
-    getHandlerByPath(api_path)->handleGet(message);
+    getHandlerByPath(api_path)->handleDelete(message);
   } catch (const std::runtime_error& e) {
     message.reply(status_codes::NotFound);
     std::cerr << e.what() << std::endl;
@@ -81,7 +81,7 @@ void RouterController::handleDelete(http_request message) {
 void RouterController::handleConnect(http_request message) {
   std::string api_path = requestPath(message);
   try {
-    getHandlerByPath(api_path)->handleGet(message);
+    getHandlerByPath(api_path)->handleConnect(message);
   } catch (const std::runtime_error& e) {
     message.reply(status_codes::NotFound);
     std::cerr << e.what() << std::endl;
@@ -91,7 +91,7 @@ void RouterController::handleConnect(http_request message) {
 void RouterController::handleOptions(http_request message) {
   std::string api_path = requestPath(message);
   try {
-    getHandlerByPath(api_path)->handleGet(message);
+    getHandlerByPath(api_path)->handleOptions(message);
   } catch (const std::runtime_error& e) {
     message.reply(status_codes::NotFound);
     std::cerr << e.what() << std::endl;
@@ -101,7 +101,7 @@ void RouterController::handleOptions(http_request message) {
 void RouterController::handleTrace(http_request message) {
   std::string api_path = requestPath(message);
   try {
-    getHandlerByPath(api_path)->handleGet(message);
+    getHandlerByPath(api_path)->handleTrace(message);
   } catch (const std::runtime_error& e) {
     message.reply(status_codes::NotFound);
     std::cerr << e.what() << std::endl;
@@ -111,7 +111,7 @@ void RouterController::handleTrace(http_request message) {
 void RouterController::handlePatch(http_request message) {
   std::string api_path = requestPath(message);
   try {
-    getHandlerByPath(api_path)->handleGet(message);
+    getHandlerByPath(api_path)->handlePatch(message);
   } catch (const std::runtime_error& e) {
     message.reply(status_codes::NotFound);
     std::cerr << e.what() << std::endl;
@@ -121,7 +121,7 @@ void RouterController::handlePatch(http_request message) {
 void RouterController::handleMerge(http_request message) {
   std::string api_path = requestPath(message);
   try {
-    getHandlerByPath(api_path)->handleGet(message);
+    getHandlerByPath(api_path)->handleMerge(message);
   } catch (const std::runtime_error& e) {
     message.reply(status_codes::NotFound);
     std::cerr << e.what() << std::endl;
