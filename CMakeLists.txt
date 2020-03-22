@@ -43,7 +43,7 @@ set(SOURCE_FILES network/server/controllers/basic_controller.cpp
                  network/server/controllers/router_controller.cpp)
 
 add_executable(get_request_example network/client/examples/get_request_example/main.cpp ${SOURCE_FILES})
-add_executable(router_example network/server/examples/router_example/main.cpp ${SOURCE_FILES})
+add_executable(router_example network/server/examples/router_example/main.cpp ${SOURCE_FILES} network/server/examples/router_example/runtime_utils.h)
 
 # headers search paths ...
 set(PROJECT_INCLUDE_DIRS "network" "network/server/controllers")
