@@ -23,7 +23,7 @@ BasicController::BasicController(const std::string &uri_string) {
 }
 
 std::string BasicController::endpoint() const{
-return listener_.uri().to_string();
+  return listener_.uri().to_string();
 }
 
 pplx::task<void> BasicController::accept() {
