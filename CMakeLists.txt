@@ -38,15 +38,15 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
 
 endif()
 
-set(SOURCE_FILES network/controllers/basic_controller.cpp
+set(SOURCE_FILES network/server/controllers/basic_controller.cpp
                  network/network_utils.cpp
-                 network/controllers/router_controller.cpp)
+                 network/server/controllers/router_controller.cpp)
 
-add_executable(${PROJECT_NAME} main.cpp ${SOURCE_FILES})
-add_executable(router_example network/examples/router_example/main.cpp ${SOURCE_FILES})
+add_executable(get_request_example network/client/examples/get_request_example/main.cpp ${SOURCE_FILES})
+add_executable(router_example network/server/examples/router_example/main.cpp ${SOURCE_FILES})
 
 # headers search paths ...
-set(PROJECT_INCLUDE_DIRS "network" "network/controllers")
+set(PROJECT_INCLUDE_DIRS "network" "network/server/controllers")
 include_directories(${PROJECT_INCLUDE_DIRS})
 
 # library search paths ...
@@ -68,10 +68,10 @@ message(CPPRESTSDK_LIBRARY " ${CPPRESTSDK_LIBRARY}")
 message(LIBRARIES_SEARCH_PATHS " ${LIBRARIES_SEARCH_PATHS}")
 
 if (APPLE)
-  target_link_libraries(${PROJECT_NAME} "-framework CoreFoundation")
-  target_link_libraries(${PROJECT_NAME} "-framework Security")
-  target_link_libraries(${PROJECT_NAME} ${LIBRARIES_SEARCH_PATHS})
-  set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-W1, -F/Library/Frameworks")
+  target_link_libraries(get_request_example "-framework CoreFoundation")
+  target_link_libraries(get_request_example "-framework Security")
+  target_link_libraries(get_request_example ${LIBRARIES_SEARCH_PATHS})
+  set_target_properties(get_request_example PROPERTIES LINK_FLAGS "-W1, -F/Library/Frameworks")
 
   target_link_libraries(router_example "-framework CoreFoundation")
   target_link_libraries(router_example "-framework Security")
