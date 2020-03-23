@@ -12,9 +12,8 @@ using namespace web::http::client;
 using namespace concurrency::streams;
 
 void TelegramAlert::sendAlert(uint64_t chat_id, std::string text) {
-  std::cout << "RUN" << std::endl;
   std::string bot_name = "/bot" + token_;
-  auto postJson =
+  auto send_request =
           pplx::create_task([text, chat_id, bot_name]() {
               json::value jsonObject;
               jsonObject[U("chat_id")] = json::value::number(chat_id);
@@ -40,8 +39,7 @@ void TelegramAlert::sendAlert(uint64_t chat_id, std::string text) {
                   });
 
   try {
-    while (!postJson.is_done()) {
-    }
+    auto status = send_request.wait();
   } catch (std::exception& e) {
     std::cout << e.what() ;
   }
