@@ -14,16 +14,16 @@ using namespace concurrency::streams;
 void TelegramAlert::sendAlert(uint64_t chat_id, std::string text) {
   std::string bot_name = "/bot" + token_;
   auto send_request =
-          pplx::create_task([text, chat_id, bot_name]() {
-              json::value jsonObject;
-              jsonObject[U("chat_id")] = json::value::number(chat_id);
-              jsonObject[U("text")] = json::value::string(U(text));
+          pplx::create_task([=]() {
+              json::value request_details;
+              request_details[U("chat_id")] = json::value::number(chat_id);
+              request_details[U("text")] = json::value::string(U(text));
 
               return http_client(U("https://api.telegram.org/"))
                       .request(
                               methods::POST,
                               uri_builder(U(bot_name)).append_path("sendMessage").to_string(),
-                              jsonObject);
+                              request_details);
           })
 
                   // Get the response.
