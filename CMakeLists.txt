@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.10)
 project(alert_system)
 
 if(UNIX) # Darwing or Linux
@@ -11,7 +11,10 @@ if(UNIX) # Darwing or Linux
 
     find_package(OpenSSL 1.0.2 REQUIRED)
   else()
+    set(cpprestsdk_DIR /usr/lib/${CMAKE_LIBRARY_ARCHITECTURE}/cmake/)
+
     find_package(OpenSSL 1.0.1 REQUIRED)
+    message(OPENSSL_LIBRARIES " ${OPENSSL_LIBRARIES}")
   endif()
 
   set(Boost_USE_MULTITHREADED TRUE)
@@ -77,6 +80,6 @@ if (APPLE)
   target_link_libraries(router_example ${LIBRARIES_SEARCH_PATHS})
   set_target_properties(router_example PROPERTIES LINK_FLAGS "-W1, -F/Library/Frameworks")
 else()
-  target_link_libraries(${PROJECT_NAME} ${LIBRARIES_SEARCH_PATHS})
+  target_link_libraries(get_request_example ${LIBRARIES_SEARCH_PATHS})
   target_link_libraries(router_example ${LIBRARIES_SEARCH_PATHS})
 endif()
