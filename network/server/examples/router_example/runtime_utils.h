@@ -26,6 +26,5 @@ class InterruptHandler {
     std::unique_lock<std::mutex> lock { _mutex };
     _condition.wait(lock);
     std::cout << "user has signaled to interrup program..." << '\n';
-    lock.unlock();
   }
 };
