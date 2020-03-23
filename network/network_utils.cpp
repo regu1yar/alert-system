@@ -22,7 +22,7 @@ std::string NetworkUtils::hostIP(unsigned short family) {
       return ep.address().to_string();
     }
   }
-  return nullptr;
+  return "";
 }
 
 } // namespace network
