@@ -38,11 +38,11 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
 endif()
 
 set(SOURCE_FILES
-        telegram-alert/TelegramAlert.cpp
-        telegram-alert/TelegramAlert.h
+        telegram_alert/telegram_alert.cpp
+        telegram_alert/telegram_alert.h
         main.cpp)
 
-add_executable(telegram-alert ${SOURCE_FILES})
+add_executable(telegram_alert ${SOURCE_FILES})
 
 # headers search paths ...
 set(PROJECT_INCLUDE_DIRS "network" "network/server/controllers")
@@ -68,11 +68,11 @@ message(LIBRARIES_SEARCH_PATHS " ${LIBRARIES_SEARCH_PATHS}")
 message(OPENSSL_LIBRARIESS " ${OPENSSL_LIBRARIES}")
 
 if (APPLE)
-   target_link_libraries(telegram-alert "-framework CoreFoundation")
-   target_link_libraries(telegram-alert "-framework Security")
-   target_link_libraries(telegram-alert ${LIBRARIES_SEARCH_PATHS})
-   set_target_properties(telegram-alert PROPERTIES LINK_FLAGS "-W1, -F/Library/Frameworks")
+   target_link_libraries(telegram_alert "-framework CoreFoundation")
+   target_link_libraries(telegram_alert "-framework Security")
+   target_link_libraries(telegram_alert ${LIBRARIES_SEARCH_PATHS})
+   set_target_properties(telegram_alert PROPERTIES LINK_FLAGS "-W1, -F/Library/Frameworks")
 else()
     target_link_libraries(${PROJECT_NAME} ${LIBRARIES_SEARCH_PATHS})
-    target_link_libraries(telegram-alert ${LIBRARIES_SEARCH_PATHS})
+    target_link_libraries(telegram_alert ${LIBRARIES_SEARCH_PATHS})
 endif()

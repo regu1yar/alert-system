@@ -1,4 +1,4 @@
-#include "telegram-alert/TelegramAlert.h"
+#include "telegram_alert/telegram_alert.h"
 
 int main() {
   TelegramAlert alert("1011512469:AAF28pOATldHJhuZBGV14ehNhBFeZVVw86w");
