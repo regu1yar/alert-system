@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.13)
 project(alert_system)
 
 if(UNIX) # Darwing or Linux
@@ -39,17 +39,6 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
 
 endif()
 
-set(SOURCE_FILES network/server/controllers/basic_controller.cpp
-                 network/network_utils.cpp
-                 network/server/controllers/router_controller.cpp)
-
-add_executable(get_request_example network/client/examples/get_request_example/main.cpp ${SOURCE_FILES})
-add_executable(router_example network/server/examples/router_example/main.cpp ${SOURCE_FILES} network/server/examples/router_example/runtime_utils.h)
-
-# headers search paths ...
-set(PROJECT_INCLUDE_DIRS "network" "network/server/controllers")
-include_directories(${PROJECT_INCLUDE_DIRS})
-
 # library search paths ...
 if(APPLE)
   set(OPENSSL_LIBS "/usr/local/Cellar/openssl/${OPENSSL_VERSION}/lib/libssl.1.0.0.dylib;/usr/local/Cellar/openssl/${OPENSSL_VERSION}/lib/libcrypto.1.0.0.dylib")
@@ -68,17 +57,16 @@ message(OPENSSL_LIBS " ${OPENSSL_LIBS}")
 message(CPPRESTSDK_LIBRARY " ${CPPRESTSDK_LIBRARY}")
 message(LIBRARIES_SEARCH_PATHS " ${LIBRARIES_SEARCH_PATHS}")
 
-if (APPLE)
-  target_link_libraries(get_request_example "-framework CoreFoundation")
-  target_link_libraries(get_request_example "-framework Security")
-  target_link_libraries(get_request_example ${LIBRARIES_SEARCH_PATHS})
-  set_target_properties(get_request_example PROPERTIES LINK_FLAGS "-W1, -F/Library/Frameworks")
+function(my_target_link_cpprest target_name)
+  if (APPLE)
+    target_link_libraries(${target_name} "-framework CoreFoundation")
+    target_link_libraries(${target_name} "-framework Security")
+    target_link_libraries(${target_name} ${LIBRARIES_SEARCH_PATHS})
+    set_target_properties(${target_name} PROPERTIES LINK_FLAGS "-W1, -F/Library/Frameworks")
+  else()
+    target_link_libraries(${target_name} ${LIBRARIES_SEARCH_PATHS})
+  endif()
+endfunction()
 
-  target_link_libraries(router_example "-framework CoreFoundation")
-  target_link_libraries(router_example "-framework Security")
-  target_link_libraries(router_example ${LIBRARIES_SEARCH_PATHS})
-  set_target_properties(router_example PROPERTIES LINK_FLAGS "-W1, -F/Library/Frameworks")
-else()
-  target_link_libraries(get_request_example ${LIBRARIES_SEARCH_PATHS})
-  target_link_libraries(router_example ${LIBRARIES_SEARCH_PATHS})
-endif()
+add_subdirectory(network)
+

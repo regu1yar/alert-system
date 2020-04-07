@@ -1,7 +1,8 @@
 #include <iostream>
 
-#include "handler.h"
-#include "router_controller.h"
+#include <server/controllers/handler.h>
+#include <server/controllers/router_controller.h>
+
 #include "runtime_utils.h"
 
 class HelloWorldHandler : public network::Handler {
