@@ -1,0 +1,80 @@
+cmake_minimum_required(VERSION 3.15)
+project(new_interface)
+
+if(UNIX) # Darwing or Linux
+
+    if(APPLE)
+        # Prefer a homebrew version of OpenSSL over the one in /usr/lib
+        file(GLOB OPENSSL_ROOT_DIR /usr/local/Cellar/openssl/*)
+        # Prefer the latest (make the latest one first)
+        list(REVERSE OPENSSL_ROOT_DIR)
+
+        find_package(OpenSSL 1.0.2 REQUIRED)
+    else()
+        find_package(OpenSSL 1.0.1 REQUIRED)
+    endif()
+
+    set(Boost_USE_MULTITHREADED TRUE)
+    find_package(Boost REQUIRED COMPONENTS system thread log program_options chrono)
+    find_package(cpprestsdk REQUIRED)
+
+elseif(WIN32) # Windows systems including Win64.
+    message(FATAL_ERROR "-- Windows is not supported for now.")
+else()
+    message(FATAL_ERROR "-- Unsupported platform sorry! :( ")
+endif()
+
+# Configure compiler options ...
+if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+
+    message("-- configuring clang options")
+    set(CMAKE_CXX_FLAGS "-std=c++17 -stdlib=libc++")
+
+elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+
+    message("-- configuring gcc options")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++17")
+
+endif()
+
+set(SOURCE_FILES
+        Interface.hpp
+        Telegram.hpp
+        Telegram.cpp
+        main.cpp
+        )
+
+add_executable(telegram_alert ${SOURCE_FILES})
+
+# headers search paths ...
+set(PROJECT_INCLUDE_DIRS "network" "network/server/controllers")
+include_directories(${PROJECT_INCLUDE_DIRS})
+
+# library search paths ...
+if(APPLE)
+    set(OPENSSL_LIBS "/usr/local/Cellar/openssl/${OPENSSL_VERSION}/lib/libssl.1.0.0.dylib;/usr/local/Cellar/openssl/${OPENSSL_VERSION}/lib/libcrypto.1.0.0.dylib")
+    set(CPPRESTSDK_LIBRARY "cpprestsdk::cpprest")
+
+    set(LIBRARIES_SEARCH_PATHS ${OPENSSL_LIBS} ${Boost_LIBRARIES} ${CPPRESTSDK_LIBRARY})
+else()
+    set(OPENSSL_LIBS "${OPENSSL_LIBRARIES}")
+    set(CPPRESTSDK_LIBRARY "${PROJECT_SOURCE_DIR}/libs/cpprestsdk/build.release/Binaries/libcpprest.a")
+
+    set(LIBRARIES_SEARCH_PATHS ${CPPRESTSDK_LIBRARY} ${OPENSSL_LIBS} ${Boost_LIBRARIES})
+endif()
+
+message(BOOST_LIBS " ${Boost_LIBRARIES}")
+message(OPENSSL_LIBS " ${OPENSSL_LIBS}")
+message(CPPRESTSDK_LIBRARY " ${CPPRESTSDK_LIBRARY}")
+message(LIBRARIES_SEARCH_PATHS " ${LIBRARIES_SEARCH_PATHS}")
+message(OPENSSL_LIBRARIESS " ${OPENSSL_LIBRARIES}")
+
+if (APPLE)
+   target_link_libraries(telegram_alert "-framework CoreFoundation")
+   target_link_libraries(telegram_alert "-framework Security")
+   target_link_libraries(telegram_alert ${LIBRARIES_SEARCH_PATHS})
+   set_target_properties(telegram_alert PROPERTIES LINK_FLAGS "-W1, -F/Library/Frameworks")
+else()
+    target_link_libraries(${PROJECT_NAME} ${LIBRARIES_SEARCH_PATHS})
+    target_link_libraries(telegram_alert ${LIBRARIES_SEARCH_PATHS})
+endif()
