@@ -2,6 +2,8 @@
 ### Example user template template
 ### Example user template
 
+build
+cmake-build-debug
 # IntelliJ project files
 .idea
 *.iml

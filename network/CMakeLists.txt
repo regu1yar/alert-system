@@ -10,7 +10,6 @@ target_sources(network
         ${CMAKE_CURRENT_LIST_DIR}/network_utils.h
         ${CMAKE_CURRENT_LIST_DIR}/server/controllers/handler.h
         ${CMAKE_CURRENT_LIST_DIR}/server/controllers/router_controller.h
-
 )
 
 target_include_directories(network PUBLIC "${CMAKE_CURRENT_LIST_DIR}" "${CMAKE_CURRENT_LIST_DIR}/server/controllers")

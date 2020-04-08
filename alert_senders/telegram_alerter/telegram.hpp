@@ -5,7 +5,7 @@
 #include <cpprest/http_client.h>
 #include <cpprest/json.h>
 #include <cpprest/uri.h>
-#include "Interface.hpp"
+#include "abstract_sender.hpp"
 
 using namespace utility;
 using namespace web;

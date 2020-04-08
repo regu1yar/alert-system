@@ -68,5 +68,12 @@ function(my_target_link_cpprest target_name)
   endif()
 endfunction()
 
-add_subdirectory(network)
+add_executable(alert-system main.cpp)
 
+add_subdirectory(network)
+add_subdirectory(kapacitor_input)
+add_subdirectory(alert_senders)
+
+target_link_libraries(alert-system network)
+
+my_target_link_cpprest(alert-system)

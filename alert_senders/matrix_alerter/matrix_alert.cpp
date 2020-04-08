@@ -18,27 +18,27 @@ using namespace web::http;
 using namespace web::http::client;
 using namespace concurrency::streams;
 
-std::string Basic_Alert::get_room_id() {
+std::string BasicAlert::getRoomId() {
     return "!peaLsZdtyOLKogIHZJ:matrix.org";
 }
 
-std::string Basic_Alert::get_message() {
+std::string BasicAlert::getMessage() {
     return alert;
 }
 
-Basic_Alert::Basic_Alert(std::string s)
+BasicAlert::BasicAlert(std::string s)
 {
     alert = s;
 }
 
-Matrix_Alerter::Matrix_Alerter() {
+MatrixAlerter::MatrixAlerter() {
 
     token = "null";
     text = "";
     room_num = "";
 }
 
-void Matrix_Alerter::acquire_token() {
+void MatrixAlerter::acquireToken() {
     auto postJson = pplx::create_task([]() {
         json::value jsonObject;
         jsonObject[U("type")] = json::value::string(U("m.login.password"));
@@ -73,18 +73,18 @@ void Matrix_Alerter::acquire_token() {
     }
 }
 
-void Matrix_Alerter::get_room_num(std::string room_id) {
+void MatrixAlerter::getRoomNum(std::string room_id) {
     room_num = room_id;
 }
 
-void Matrix_Alerter::reserve_token() {
+void MatrixAlerter::reserveToken() {
     token = "MDAxOGxvY2F0aW9uIG1hdHJpeC5vcmcKMDAxM2lkZW50aWZpZXIga2V5CjAwMTBjaWQgZ2VuID0gMQowMDI3Y2lkIHVzZXJfaWQgPSBAbmFyZWtpdG86bWF0cml4Lm9yZwowMDE2Y2lkIHR5cGUgPSBhY2Nlc3MKMDAyMWNpZCBub25jZSA9IDJDWEZJZksjcHhyZThDMkwKMDAyZnNpZ25hdHVyZSD6J5BVtG6MZfTsBzENuDZ1vtRkljZWSYwJjqkwhlVFwwo";
 }
 
-bool Matrix_Alerter::send_alert(std::string message, std::string room_id) {
+bool MatrixAlerter::sendAlert(std::string message, std::string room_id) {
     if(token == "null")
-        reserve_token();
-    get_room_num(room_id);
+        reserveToken();
+    getRoomNum(room_id);
     text = message;
     auto my_token = "m.room.message?access_token=" + token;
     auto postJson = pplx::create_task([=]() {
@@ -115,7 +115,7 @@ bool Matrix_Alerter::send_alert(std::string message, std::string room_id) {
     }
 }
 
-auto Matrix_Alerter::ret_token() {
+auto MatrixAlerter::retToken() {
     return token;
 }
 
