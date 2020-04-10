@@ -1,9 +1,6 @@
 //
 // Created by Мхитарян Нарек on 24/03/2020.
 //
-
-#pragma once
-
 #include <iostream>
 #include <string>
 #include <cpprest/http_client.h>
