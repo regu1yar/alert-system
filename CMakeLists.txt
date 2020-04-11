@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.10)
 project(alert_system)
 
 if(UNIX) # Darwing or Linux
@@ -68,12 +68,12 @@ function(my_target_link_cpprest target_name)
   endif()
 endfunction()
 
-add_executable(alert-system main.cpp)
+add_executable(alert_system main.cpp)
 
 add_subdirectory(network)
 add_subdirectory(kapacitor_input)
 add_subdirectory(alert_senders)
 
-target_link_libraries(alert-system network)
+target_link_libraries(alert_system network)
 
-my_target_link_cpprest(alert-system)
+my_target_link_cpprest(alert_system)
