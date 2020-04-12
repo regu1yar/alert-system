@@ -51,8 +51,8 @@ WORKDIR /app/build/
 RUN protoc -I ../alert-system/third_party/etcd-cpp-apiv3/proto --grpc_out=../alert-system/third_party/etcd-cpp-apiv3/proto --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` ../alert-system/third_party/etcd-cpp-apiv3/proto/rpc.proto && \
     protoc -I ../alert-system/third_party/etcd-cpp-apiv3/proto --cpp_out=../alert-system/third_party/etcd-cpp-apiv3/proto ../alert-system/third_party/etcd-cpp-apiv3/proto/*.proto && \
     cmake ../alert-system && \
-#    make alert_system
-    make router_example
+    make alert_system
+#    make router_example
 
 # Run -----------------------------------------------------
 
@@ -72,9 +72,9 @@ RUN apt-get update && \
 USER alert_system
 
 WORKDIR /app/
-#COPY --from=build /app/build/alert_system .
-COPY --from=build /app/build/network/server/examples/router_example/router_example .
+COPY --from=build /app/build/alert_system .
+#COPY --from=build /app/build/network/server/examples/router_example/router_example .
 
-#ENTRYPOINT ["./alert_system"]
-ENTRYPOINT ["./router_example"]
+ENTRYPOINT ["./alert_system"]
+#ENTRYPOINT ["./router_example"]
 
