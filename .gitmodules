@@ -1,0 +1,3 @@
+[submodule "etcd-cpp-apiv3"]
+	path = etcd-cpp-apiv3
+	url = ssh://git@bb.prac.atp-fivt.org:7999/ii/etcd-cpp-apiv3.git
