@@ -7,9 +7,6 @@
 #include "abstract_sender.hpp"
 #include <string>
 
-#ifndef ALERT_SYSTEM_MATRIXPREPAREDALERT_H
-#define ALERT_SYSTEM_MATRIXPREPAREDALERT_H
-
 class MatrixPreparedAlert : public PreparedAlert
 {
 public:
@@ -21,4 +18,3 @@ private:
     std::string text_;
 };
 
-#endif //ALERT_SYSTEM_MATRIXPREPAREDALERT_H

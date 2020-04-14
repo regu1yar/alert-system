@@ -5,9 +5,6 @@
 #pragma once
 #include "abstract_sender.hpp"
 
-#ifndef ALERT_SYSTEM_MATRIXFACTORY_H
-#define ALERT_SYSTEM_MATRIXFACTORY_H
-
 class MatrixFactory: public Factory{
 public:
     MatrixFactory();
@@ -15,4 +12,3 @@ public:
     std::shared_ptr<Preparer> createPreparer() override;
 };
 
-#endif //ALERT_SYSTEM_MATRIXFACTORY_H
