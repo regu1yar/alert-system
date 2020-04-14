@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include "MatrixFactory.h"
-#include "MatrixPreparer.h"
-#include "MatrixSender.h"
+#include "matrix_factory.h"
+#include "matrix_preparer.h"
+#include "matrix_sender.h"
 
 
 MatrixFactory::MatrixFactory() {}

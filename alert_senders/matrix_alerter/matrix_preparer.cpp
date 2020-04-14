@@ -4,9 +4,9 @@
 
 
 #pragma once
-#include "Alert.h"
-#include "MatrixPreparedAlert.h"
-#include "MatrixPreparer.h"
+#include "alert.h"
+#include "matrix_prepared_alert.h"
+#include "matrix_preparer.h"
 
 
 std::shared_ptr<PreparedAlert> MatrixPreparer::prepare(Alert alert) {

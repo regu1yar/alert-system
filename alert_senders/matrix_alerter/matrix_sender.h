@@ -9,11 +9,11 @@
 
 class MatrixSender: public Sender {
 public:
-    MatrixSender(std::string token) : token_(token) {};
+    MatrixSender(const std::string &token) : token_(token) {};
 
     MatrixSender() {};
 
-    void setToken(std::string token);
+    void setToken(const std::string &token);
 
     const std::string &getToken() const;
 

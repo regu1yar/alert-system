@@ -6,8 +6,8 @@
 #include <cpprest/uri.h>
 #include <cpprest/json.h>
 #include <pplx/pplxtasks.h>
-#include "MatrixSender.h"
-#include "MatrixPreparedAlert.h"
+#include "matrix_sender.h"
+#include "matrix_prepared_alert.h"
 
 
 using web::uri_builder;
@@ -15,7 +15,7 @@ using web::http::methods;
 using web::http::http_response;
 using web::http::client::http_client;
 
-void MatrixSender::setToken(std::string token) {
+void MatrixSender::setToken(const std::string &token) {
     token_ = token;
 }
 

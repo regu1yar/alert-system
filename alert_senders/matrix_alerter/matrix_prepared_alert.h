@@ -10,7 +10,7 @@
 class MatrixPreparedAlert : public PreparedAlert
 {
 public:
-    MatrixPreparedAlert(std::string matrix_id, std::string text);
+    MatrixPreparedAlert(const std::string &matrix_id, const std::string &text);
     std::string getChatId();
     std::string getText();
 private:
