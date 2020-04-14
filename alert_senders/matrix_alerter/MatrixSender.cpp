@@ -1,46 +1,19 @@
 //
-// Created by Мхитарян Нарек on 24/03/2020.
+// Created by Мхитарян Нарек on 14/04/2020.
 //
-#include <iostream>
-#include <string>
 #include <cpprest/http_client.h>
 #include <cpprest/filestream.h>
 #include <cpprest/uri.h>
 #include <cpprest/json.h>
-#include "matrix_alert.h"
+#include <pplx/pplxtasks.h>
+#include "MatrixSender.h"
+#include "MatrixPreparedAlert.h"
 
-using namespace utility;
-using namespace web;
-using namespace web::http;
-using namespace web::http::client;
-using namespace concurrency::streams;
 
-MatrixFactory::MatrixFactory() {}
-
-std::shared_ptr<Sender> MatrixFactory::createSender() {
-    return std::make_shared<MatrixSender>();
-}
-
-std::shared_ptr<Preparer> MatrixFactory::createPreparer() {
-    return std::make_shared<MatrixPreparer>();
-}
-
-////////////////////////////////////////////////////////////////////////////////
-
-std::string MatrixPreparedAlert::getText() {
-    return text_;
-}
-
-std::string MatrixPreparedAlert::getChatId() {
-    return matrix_id_;
-}
-
-MatrixPreparedAlert::MatrixPreparedAlert(std::string chat_id,
-                                             std::string text):
-        matrix_id_(chat_id),
-        text_(text){}
-
-////////////////////////////////////////////////////////////////////////////////
+using web::uri_builder;
+using web::http::methods;
+using web::http::http_response;
+using web::http::client::http_client;
 
 void MatrixSender::setToken(std::string token) {
     token_ = token;
@@ -62,9 +35,9 @@ void MatrixSender::send(std::shared_ptr<PreparedAlert> prepared_alert) {
     std::string text = matrix_alert->getText();
     auto my_token = "m.room.message?access_token=" + token_;
     auto postJson = pplx::create_task([=]() {
-        json::value jsonObject;
-        jsonObject[U("msgtype")] = json::value::string(U("m.text"));
-        jsonObject[U("body")] = json::value::string(U(text));
+        web::json::value jsonObject;
+        jsonObject[U("msgtype")] = web::json::value::string(U("m.text"));
+        jsonObject[U("body")] = web::json::value::string(U(text));
 
         return http_client(U("https://matrix-client.matrix.org/"))
                 .request(methods::POST,
@@ -91,10 +64,10 @@ void MatrixSender::send(std::shared_ptr<PreparedAlert> prepared_alert) {
 
 void MatrixSender::acquireToken() {
     auto postJson = pplx::create_task([]() {
-        json::value jsonObject;
-        jsonObject[U("type")] = json::value::string(U("m.login.password"));
-        jsonObject[U("user")] = json::value::string(U("narekito"));
-        jsonObject[U("password")] = json::value::string(U("Alchemist1Edward"));
+        web::json::value jsonObject;
+        jsonObject[U("type")] = web::json::value::string(U("m.login.password"));
+        jsonObject[U("user")] = web::json::value::string(U("narekito"));
+        jsonObject[U("password")] = web::json::value::string(U("Alchemist1Edward"));
 
         return http_client(U("https://matrix-client.matrix.org/"))
                 .request(methods::POST,
@@ -114,7 +87,7 @@ void MatrixSender::acquireToken() {
             })
 
                     // Parse the user details.
-            .then([=](json::value jsonObject) {
+            .then([=](web::json::value jsonObject) {
                 token_ = jsonObject[U("access_token")].as_string();
             });
     try {
@@ -123,13 +96,3 @@ void MatrixSender::acquireToken() {
         printf("Error exception:%s\n", e.what());
     }
 }
-
-
-////////////////////////////////////////////////////////////////////////////////
-
-std::shared_ptr<PreparedAlert> MatrixPreparer::prepare(Alert alert) {
-    return std::make_shared<MatrixPreparedAlert>(alert.chat_id, alert.text);
-}
-
-
-

@@ -1,4 +1,5 @@
-#include "matrix_alert.h"
+#include "MatrixFactory.h"
+#include "Alert.h"
 
 int main() {
     MatrixFactory factory;
