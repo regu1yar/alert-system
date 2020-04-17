@@ -1,0 +1,48 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/xenial64"
+  
+  config.vm.box_url = "Vagrantfile"
+
+  config.vm.provision "shell", inline: <<-SHELL
+    mkdir /system_init && cd /system_init
+    apt-get update
+    apt-get install -y g++ git wget tar make cmake
+    # installing openssl
+    apt-get install -y openssl
+    openssl version
+
+    # installing boost
+    apt-get install -y libboost-system-dev libboost-thread-dev libboost-log-dev \
+        libboost-program-options-dev libboost-chrono-dev libboost-locale-dev libboost-random-dev
+    # installing cpprestsdk and dependecies
+    apt-get install -y libcpprest-dev
+    # installing dependencies for grcp and downloading repo
+    apt-get install -y build-essential
+    git clone https://github.com/grpc/grpc.git
+
+    protobuf_version=3.11.4
+
+    # installing protobuf (for etcd client) and dependencies
+    apt-get install -y autoconf automake libtool curl unzip
+    wget https://github.com/protocolbuffers/protobuf/releases/download/v$protobuf_version/protobuf-cpp-$protobuf_version.tar.gz
+    tar -xzvf protobuf-cpp-$protobuf_version.tar.gz
+    cd /system_init/protobuf-$protobuf_version/
+    ./configure
+    make
+    # make check
+    make install
+    ldconfig
+
+    # installing grpc (for etcd client) and dependencies
+    cd /system_init/grpc/
+    git submodule update --init
+    make
+    make install
+    cd / && rm -rf /system_init
+  SHELL
+
+  config.vm.synced_folder "..", "/alert-system"
+end

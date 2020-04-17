@@ -4,6 +4,10 @@
 
 build
 cmake-build-debug
+*.log
+.vagrant
+.DS_Store
+
 # IntelliJ project files
 .idea
 *.iml
