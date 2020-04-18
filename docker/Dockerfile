@@ -48,9 +48,7 @@ RUN git submodule update --init && \
 
 # building project
 WORKDIR /app/build/
-RUN protoc -I ../alert-system/third_party/etcd-cpp-apiv3/proto --grpc_out=../alert-system/third_party/etcd-cpp-apiv3/proto --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` ../alert-system/third_party/etcd-cpp-apiv3/proto/rpc.proto && \
-    protoc -I ../alert-system/third_party/etcd-cpp-apiv3/proto --cpp_out=../alert-system/third_party/etcd-cpp-apiv3/proto ../alert-system/third_party/etcd-cpp-apiv3/proto/*.proto && \
-    cmake ../alert-system && \
+RUN cmake ../alert-system && \
     make alert_system
 #    make router_example
 
