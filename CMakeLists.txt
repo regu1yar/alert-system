@@ -17,7 +17,7 @@ if(UNIX) # Darwing or Linux
   endif()
 
   set(Boost_USE_MULTITHREADED TRUE)
-  find_package(Boost REQUIRED COMPONENTS system thread log program_options chrono)
+  find_package(Boost REQUIRED COMPONENTS system thread log program_options chrono locale random)
   find_package(cpprestsdk REQUIRED)
 
 elseif(WIN32) # Windows systems including Win64.
