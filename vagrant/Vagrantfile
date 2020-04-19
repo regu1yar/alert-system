@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     mkdir /system_init && cd /system_init
     apt-get update
-    apt-get install -y g++ git wget tar make cmake
+    apt-get install -y g++ clang git wget tar make cmake
     # installing openssl
     apt-get install -y openssl
     openssl version
@@ -46,6 +46,10 @@ Vagrant.configure("2") do |config|
     git submodule update --init
     make
     make install
+
+    # installing clang-tidy and dependencies
+    apt-get install -y clang-tidy python3-pip
+
     cd / && rm -rf /system_init
   SHELL
 

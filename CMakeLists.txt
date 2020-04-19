@@ -68,6 +68,8 @@ function(my_target_link_cpprest target_name)
   endif()
 endfunction()
 
+set(CMAKE_CXX_CLANG_TIDY clang-tidy -header-filter=.,-checks=-*,readability-*)
+
 add_executable(alert_system main.cpp)
 
 add_subdirectory(executables)
