@@ -1,10 +1,11 @@
 #pragma once
 
-#include "recipient.hpp"
-
-#include <cpprest/http_client.h>
 #include <string>
 #include <vector>
+
+#include <cpprest/http_client.h>
+
+#include "recipient.hpp"
 
 
 class ConfiguratorService {

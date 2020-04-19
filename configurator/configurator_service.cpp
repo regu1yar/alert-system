@@ -1,8 +1,8 @@
-#include "configurator_service.hpp"
-
 #include <cpprest/http_client.h>
 #include <cpprest/uri.h>
 #include <cpprest/json.h>
+
+#include "configurator_service.hpp"
 
 
 std::vector<Recipient> ConfiguratorService::getRecipientByNotificationId(const std::string & notification_id) {
@@ -26,13 +26,13 @@ std::vector<Recipient> ConfiguratorService::getRecipientByNotificationId(const s
             for (auto recipient_object : json_body.get().as_array()) {
               recipients.emplace_back(Recipient(recipient_object.at("user")));
             }
-              return recipients;
+            return recipients;
           });
 
   try {
     auto status = recipients_request.wait();
     return recipients_request.get();
-  } catch (std::exception& e) {
+  } catch (const std::exception& e) {
     std::cout << e.what() ;
   }
 }
