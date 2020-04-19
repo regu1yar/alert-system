@@ -7,7 +7,7 @@
 
 class Recipient {
 public:
-  explicit Recipient(const std::string & name, const std::string & telegram_chat_id, const std::string matrix_id);
+  explicit Recipient(const std::string & name, const std::string & telegram_chat_id, const std::string & matrix_id);
   explicit Recipient(const web::json::value & recipient_json);
   std::string getName() const noexcept;
   std::string getTelegramChatId() const noexcept;

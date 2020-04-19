@@ -1,6 +1,6 @@
 #include "recipient.hpp"
 
-Recipient::Recipient(const std::string & name, const std::string & telegram_chat_id)
+Recipient::Recipient(const std::string & name, const std::string & telegram_chat_id, const std::string & matrix_id)
   : name_(name)
   , telegram_chat_id_(telegram_chat_id)
   , matrix_id_(matrix_id)
