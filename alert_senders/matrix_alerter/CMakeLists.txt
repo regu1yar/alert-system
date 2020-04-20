@@ -4,13 +4,13 @@ target_sources(alert_system
         ${CMAKE_CURRENT_LIST_DIR}/matrix_prepared_alert.cpp
         ${CMAKE_CURRENT_LIST_DIR}/matrix_preparer.cpp
         ${CMAKE_CURRENT_LIST_DIR}/matrix_sender.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/alert.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/../alert.cpp
         PUBLIC
         ${CMAKE_CURRENT_LIST_DIR}/matrix_factory.h
         ${CMAKE_CURRENT_LIST_DIR}/matrix_prepared_alert.h
         ${CMAKE_CURRENT_LIST_DIR}/matrix_preparer.h
         ${CMAKE_CURRENT_LIST_DIR}/matrix_sender.h
-        ${CMAKE_CURRENT_LIST_DIR}/alert.h
+        ${CMAKE_CURRENT_LIST_DIR}/../alert.h
         )
 
 add_executable(matrix_tester main.cpp)
@@ -21,13 +21,13 @@ target_sources(matrix_tester
         ${CMAKE_CURRENT_LIST_DIR}/matrix_prepared_alert.cpp
         ${CMAKE_CURRENT_LIST_DIR}/matrix_preparer.cpp
         ${CMAKE_CURRENT_LIST_DIR}/matrix_sender.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/alert.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/../alert.cpp
         PUBLIC
         ${CMAKE_CURRENT_LIST_DIR}/matrix_factory.h
         ${CMAKE_CURRENT_LIST_DIR}/matrix_prepared_alert.h
         ${CMAKE_CURRENT_LIST_DIR}/matrix_preparer.h
         ${CMAKE_CURRENT_LIST_DIR}/matrix_sender.h
-        ${CMAKE_CURRENT_LIST_DIR}/alert.h
+        ${CMAKE_CURRENT_LIST_DIR}/../alert.h
         ${CMAKE_CURRENT_LIST_DIR}/../abstract_sender.hpp
         )
 

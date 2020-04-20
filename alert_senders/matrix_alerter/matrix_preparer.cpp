@@ -3,7 +3,6 @@
 //
 
 
-#pragma once
 #include "alert.h"
 #include "matrix_prepared_alert.h"
 #include "matrix_preparer.h"

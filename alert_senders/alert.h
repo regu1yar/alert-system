@@ -5,10 +5,8 @@
 #pragma once
 
 #include <string>
-class Alert
-{
+class Alert{
 public:
-    std::string text;
     std::string chat_id;
+    std::string text;
 };
-

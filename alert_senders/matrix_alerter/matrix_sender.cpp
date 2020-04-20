@@ -29,8 +29,7 @@ void MatrixSender::reserveToken() {
 
 void MatrixSender::send(std::shared_ptr<PreparedAlert> prepared_alert) {
     auto matrix_alert = std::static_pointer_cast<MatrixPreparedAlert>(prepared_alert);
-    if(token_ == "null")
-        reserveToken();
+    reserveToken();
     std::string room_id = matrix_alert->getChatId();
     std::string text = matrix_alert->getText();
     auto my_token = "m.room.message?access_token=" + token_;

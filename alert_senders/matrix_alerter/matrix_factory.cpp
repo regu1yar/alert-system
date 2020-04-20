@@ -2,8 +2,6 @@
 // Created by Мхитарян Нарек on 14/04/2020.
 //
 
-#pragma once
-
 #include "matrix_factory.h"
 #include "matrix_preparer.h"
 #include "matrix_sender.h"

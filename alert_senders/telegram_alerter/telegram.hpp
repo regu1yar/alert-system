@@ -6,18 +6,13 @@
 #include <cpprest/json.h>
 #include <cpprest/uri.h>
 #include "abstract_sender.hpp"
+#include "alert.h"
 
 using namespace utility;
 using namespace web;
 using namespace web::http;
 using namespace web::http::client;
 using namespace concurrency::streams;
-
-class Alert{
-public:
-    std::string chat_id;
-    std::string text;
-};
 
 class TelegramPreparedAlert: public PreparedAlert{
 public:
