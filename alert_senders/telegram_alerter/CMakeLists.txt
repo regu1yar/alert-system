@@ -1,8 +1,8 @@
 target_sources(alert_system
         PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/telegram.cpp
+        ${TALERTCPPS}
         PUBLIC
-        ${CMAKE_CURRENT_LIST_DIR}/telegram.hpp
+        ${TALERTHS}
 )
 
 target_include_directories(alert_system PUBLIC "${CMAKE_CURRENT_LIST_DIR}")

@@ -2,9 +2,7 @@
 // Created by Мхитарян Нарек on 20/04/2020.
 //
 #include <boost/asio/steady_timer.hpp>
-//#include "alert_handler.h"
 #include <iostream>
-
 #include <server/controllers/handler.h>
 #include <server/controllers/router_controller.h>
 #include <server/examples/router_example/runtime_utils.h>
@@ -31,7 +29,7 @@ int main(int argc, const char * argv[]) {
 
         server.shutdown().wait();
     }
-    catch(std::exception & e) {
+    catch(const std::exception & e) {
         std::cerr << e.what() << std::endl;
         std::cerr << "somehitng wrong happen! :(" << '\n';
     }

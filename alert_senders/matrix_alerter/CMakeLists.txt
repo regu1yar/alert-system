@@ -1,34 +1,17 @@
 target_sources(alert_system
         PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/matrix_factory.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/matrix_prepared_alert.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/matrix_preparer.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/matrix_sender.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/../alert.cpp
+        ${MALERTCPPS}
         PUBLIC
-        ${CMAKE_CURRENT_LIST_DIR}/matrix_factory.h
-        ${CMAKE_CURRENT_LIST_DIR}/matrix_prepared_alert.h
-        ${CMAKE_CURRENT_LIST_DIR}/matrix_preparer.h
-        ${CMAKE_CURRENT_LIST_DIR}/matrix_sender.h
-        ${CMAKE_CURRENT_LIST_DIR}/../alert.h
+        ${MALERTHS}
         )
 
 add_executable(matrix_tester main.cpp)
 
 target_sources(matrix_tester
         PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/matrix_factory.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/matrix_prepared_alert.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/matrix_preparer.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/matrix_sender.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/../alert.cpp
+        ${MALERTCPPS}
         PUBLIC
-        ${CMAKE_CURRENT_LIST_DIR}/matrix_factory.h
-        ${CMAKE_CURRENT_LIST_DIR}/matrix_prepared_alert.h
-        ${CMAKE_CURRENT_LIST_DIR}/matrix_preparer.h
-        ${CMAKE_CURRENT_LIST_DIR}/matrix_sender.h
-        ${CMAKE_CURRENT_LIST_DIR}/../alert.h
-        ${CMAKE_CURRENT_LIST_DIR}/../abstract_sender.hpp
+        ${MALERTHS}
         )
 
 target_include_directories(alert_system PUBLIC "${CMAKE_CURRENT_LIST_DIR}")
