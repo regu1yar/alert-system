@@ -33,7 +33,7 @@ std::vector<Recipient> ConfiguratorService::getRecipientByNotificationId(const s
     auto status = recipients_request.wait();
     return recipients_request.get();
   } catch (const std::exception& e) {
-    std::cout << e.what() ;
+    std::cerr << e.what() ;
   }
 }
 

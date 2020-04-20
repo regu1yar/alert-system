@@ -13,14 +13,14 @@ Recipient::Recipient(const web::json::value & recipient_json) {
   matrix_id_ = recipient["id_for_matrix"].as_string();
 }
 
-std::string Recipient::getName() const noexcept {
+const std::string & Recipient::getName() const noexcept {
   return name_;
 }
 
-std::string Recipient::getTelegramChatId() const noexcept {
+const std::string & Recipient::getTelegramChatId() const noexcept {
   return telegram_chat_id_;
 }
 
-std::string Recipient::getMatrixId() const noexcept {
+const std::string & Recipient::getMatrixId() const noexcept {
   return matrix_id_;
 }
