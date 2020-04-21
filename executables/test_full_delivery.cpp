@@ -29,8 +29,8 @@ int main(int argc, const char * argv[]) {
 
         server.shutdown().wait();
     }
-    catch(const std::exception & e) {
-        std::cerr << e.what() << std::endl;
+    catch(const std::exception & exception) {
+        std::cerr << exception.what() << std::endl;
         std::cerr << "somehitng wrong happen! :(" << '\n';
     }
     return 0;

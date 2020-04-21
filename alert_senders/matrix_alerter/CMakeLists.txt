@@ -1,17 +1,17 @@
 target_sources(alert_system
         PRIVATE
-        ${MALERTCPPS}
+        ${MATRIXALERTCPPS}
         PUBLIC
-        ${MALERTHS}
+        ${MATRIXALERTHS}
         )
 
 add_executable(matrix_tester main.cpp)
 
 target_sources(matrix_tester
         PRIVATE
-        ${MALERTCPPS}
+        ${MATRIXALERTCPPS}
         PUBLIC
-        ${MALERTHS}
+        ${MATRIXALERTHS}
         )
 
 target_include_directories(alert_system PUBLIC "${CMAKE_CURRENT_LIST_DIR}")

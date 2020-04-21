@@ -1,6 +1,6 @@
 add_library(alert_senders)
 
-SET(MALERTCPPS
+SET(MATRIXALERTCPPS
         "${CMAKE_CURRENT_LIST_DIR}/matrix_alerter/matrix_factory.cpp"
         "${CMAKE_CURRENT_LIST_DIR}/matrix_alerter/matrix_prepared_alert.cpp"
         "${CMAKE_CURRENT_LIST_DIR}/matrix_alerter/matrix_preparer.cpp"
@@ -8,7 +8,7 @@ SET(MALERTCPPS
         "${CMAKE_CURRENT_LIST_DIR}/alert.cpp"
         )
 
-SET(MALERTHS
+SET(MATRIXALERTHS
         "${CMAKE_CURRENT_LIST_DIR}/abstract_sender.hpp"
         "${CMAKE_CURRENT_LIST_DIR}/alert.h"
         "${CMAKE_CURRENT_LIST_DIR}/matrix_alerter/matrix_factory.h"
@@ -17,20 +17,20 @@ SET(MALERTHS
         "${CMAKE_CURRENT_LIST_DIR}/matrix_alerter/matrix_sender.h"
         )
 
-SET(TALERTCPPS
+SET(TELEGRAMALERTCPPS
         "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/telegram.cpp"
         )
-SET(TALERTHS
+SET(TELEGRAMALERTHS
         "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/telegram.hpp"
         )
 
 target_sources(alert_senders
         PRIVATE
-        ${MALERTCPPS}
-        ${TALERTCPPS}
+        ${MATRIXALERTCPPS}
+        ${TELEGRAMALERTCPPS}
         PUBLIC
-        ${TALERTHS}
-        ${MALERTHS}
+        ${TELEGRAMALERTHS}
+        ${MATRIXALERTHS}
         )
 
 target_include_directories(alert_senders PUBLIC "${CMAKE_CURRENT_LIST_DIR}" "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter" "${CMAKE_CURRENT_LIST_DIR}/matrix_alerter")
