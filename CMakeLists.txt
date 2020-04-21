@@ -71,7 +71,7 @@ endfunction()
 add_executable(alert_system main.cpp)
 
 add_subdirectory(executables)
-#add_subdirectory(third_party/etcd-cpp-apiv3)
+add_subdirectory(third_party/etcd-cpp-apiv3)
 add_subdirectory(network)
 add_subdirectory(kapacitor_input)
 add_subdirectory(alert_senders)
