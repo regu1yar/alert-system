@@ -29,27 +29,27 @@
     В качестве *private key* нужно указать `/path/to/alert-system/vagrant/.vagrant/machines/default/virtualbox/private_key`,
     где `/path/to/alert-system` - абсолютный путь до директории с проектом в вашей системе. *User name* - vagrant.
     
-    ![Adding toolchain](images/toolchains_ssh.png)
+    ![Adding toolchain](images/toolchains_ssh.png) <!-- .element height="50%" width="50%" -->
 
 3. После создания toolchain CLion сам найдет пути до необходимых инструментов: make, компиляторы для C и C++, GDB.
 
-    ![Detecting toolchain](images/toolchains.png)
+    ![Detecting toolchain](images/toolchains.png) <!-- .element height="50%" width="50%" -->
 
 4. Далее перейдите в настройки *Settings/Preferences | Build, Execution, Deployment | CMake*. Здесь необходимо создать
 новый *CMake profile*:
 
-    ![Adding CMake profile](images/cmake_profile.png)
+    ![Adding CMake profile](images/cmake_profile.png) <!-- .element height="50%" width="50%" -->
     
 5. Затем перейдите в *Settings/Preferences | Build, Execution, Deployment | Deployment*.
     - Если конфигурация,
     соотвествующая настройкам ssh из 2 пункта, не появилась автоматически, создайте ее. Далее ее можно переименовать.
     
-    ![Deployment](images/deployment.png)
+    ![Deployment](images/deployment.png) <!-- .element height="50%" width="50%" -->
     
     - Затем перейдите во вкладку *Mappings*. Здесь установите *Deployment path* равным `home/vagrant/alert-system` - это
     будет путем до директории с проектом на виртуальной машине (`/home/vagrant` - это домашняя директория).
     
-    ![Deployment, mappings](images/deployment_mapping.png)
+    ![Deployment, mappings](images/deployment_mapping.png) <!-- .element height="50%" width="50%" -->
     
     - После этого рекомендуется вручную указать файлы и директории, которые нужно исключить из синхронизации между
     директориями: `/path/to/alert-system/vagrant/.vagrant` и
@@ -57,7 +57,7 @@
     виртуальной машины и не нужны для сборки. Аналогично, `/path/to/alert-system` - абсолютный путь до директории с
     проектом в вашей системе.
     
-    ![Deployment, exclusion](images/deployment_excluded.png)
+    ![Deployment, exclusion](images/deployment_excluded.png) <!-- .element height="50%" width="50%" -->
 
 # Использование Full Remote Mode
 
