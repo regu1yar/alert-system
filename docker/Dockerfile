@@ -6,6 +6,9 @@ FROM ubuntu:latest as build
 ADD ./ /app/alert-system
 WORKDIR /app/build/
 
+RUN sysctl net.ipv4.conf.all.forwarding=1
+#RUN sudo iptables -P FORWARD ACCEPT
+
 RUN apt-get update && \
     apt-get install -y \
         g++ git wget tar make cmake \
@@ -49,7 +52,7 @@ RUN git submodule update --init && \
 # building project
 WORKDIR /app/build/
 RUN cmake ../alert-system && \
-    make alert_system
+    make test_full_delivery
 #    make router_example
 
 # Run -----------------------------------------------------
@@ -66,13 +69,17 @@ RUN apt-get update && \
     && \
 # setting user
     groupadd -r alert_system && useradd -r -g alert_system alert_system
+RUN apt-get -qq -y install curl
+
+
 
 USER alert_system
 
 WORKDIR /app/
-COPY --from=build /app/build/alert_system .
+COPY --from=build /app/build/executables/test_full_delivery .
 #COPY --from=build /app/build/network/server/examples/router_example/router_example .
 
-ENTRYPOINT ["./alert_system"]
+ENTRYPOINT ["./test_full_delivery"]
 #ENTRYPOINT ["./router_example"]
+
 
