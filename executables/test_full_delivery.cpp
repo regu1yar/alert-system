@@ -11,7 +11,7 @@
 int main(int argc, const char * argv[]) {
     InterruptHandler::hookSIGINT();
 
-    std::string s = "http://host_auto_ip4:4200";
+    std::string s = "http://0.0.0.0:4200";
     s += '0';
     s += "/api/";
 

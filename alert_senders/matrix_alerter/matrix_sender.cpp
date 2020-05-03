@@ -38,6 +38,8 @@ void MatrixSender::send(std::shared_ptr<PreparedAlert> prepared_alert) {
         jsonObject[U("msgtype")] = web::json::value::string(U("m.text"));
         jsonObject[U("body")] = web::json::value::string(U(text));
 
+        std::cout << "JSON Ready to be sent" << std::endl;
+
         return http_client(U("https://matrix-client.matrix.org/"))
                 .request(methods::POST,
                          uri_builder(U("_matrix")).append_path(U("client")).append_path(U("r0")).append_path(U("rooms")).append_path(room_id).append_path("send").append_path(my_token).to_string(),
@@ -46,9 +48,15 @@ void MatrixSender::send(std::shared_ptr<PreparedAlert> prepared_alert) {
 
             // Get the response.
             .then([](http_response response) {
+                std::cout << "CLient connected" << std::endl;
+                std::cout << "https://matrix-client.matrix.org/" << std::endl;
+                std::cout << response.status_code() << std::endl;
+                std::cout << response.extract_json().get() << std::endl;
                 // Check the status code.
                 if (response.status_code() != 200) {
                     throw std::runtime_error("Returned " + std::to_string(response.status_code()));
+                } else{
+                    std::cout << "OK returned, i guess" << std::endl;
                 }
 
                 // Convert the response body to JSON object.
@@ -56,7 +64,9 @@ void MatrixSender::send(std::shared_ptr<PreparedAlert> prepared_alert) {
             });
     try {
         postJson.wait();
+        std::cout << "Matrix with no exceptions" << std::endl;
     } catch (const std::exception &e) {
+        std::cout << "Matrix with exceptions :c" << std::endl;
         printf("Error exception:%s\n", e.what());
     }
 }
@@ -67,6 +77,8 @@ void MatrixSender::acquireToken() {
         jsonObject[U("type")] = web::json::value::string(U("m.login.password"));
         jsonObject[U("user")] = web::json::value::string(U("narekito"));
         jsonObject[U("password")] = web::json::value::string(U("Alchemist1Edward"));
+
+
 
         return http_client(U("https://matrix-client.matrix.org/"))
                 .request(methods::POST,
