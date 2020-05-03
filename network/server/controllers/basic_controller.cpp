@@ -15,6 +15,8 @@ BasicController::BasicController(const std::string &uri_string) {
     endpointBuilder.set_host(NetworkUtils::hostIP4());
   } else if (endpointURI.host() == "host_auto_ip6") {
     endpointBuilder.set_host(NetworkUtils::hostIP6());
+  } else if (endpointURI.host() == "0.0.0.0") {
+    endpointBuilder.set_host("0.0.0.0");
   }
   endpointBuilder.set_port(endpointURI.port());
   endpointBuilder.set_path(endpointURI.path());

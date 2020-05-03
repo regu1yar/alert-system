@@ -68,7 +68,9 @@ function(my_target_link_cpprest target_name)
   endif()
 endfunction()
 
-set(CMAKE_CXX_CLANG_TIDY clang-tidy;)
+if (LINT)
+  set(CMAKE_CXX_CLANG_TIDY clang-tidy;)
+endif ()
 
 add_executable(alert_system main.cpp)
 
