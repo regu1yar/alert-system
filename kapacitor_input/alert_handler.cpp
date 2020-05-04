@@ -36,6 +36,12 @@ void AlertHandler::handlePost(network::http_request message){
             alert.chat_id = alert_body.at("chat_id").as_string();
             std::cout << "Going to Telegram" << std::endl;
         }
+        else {
+            // ONLY FOR TESTING PURPOSES. TEST + KAPACITOR
+            factory = std::shared_ptr<MatrixFactory>(new MatrixFactory());
+            alert.chat_id = "!peaLsZdtyOLKogIHZJ:matrix.org";
+            std::cout << "Going to Matrix" << std::endl;
+        }
         auto preparer = factory->createPreparer();
         auto sender = factory->createSender();
         alert.text = formatted.str();
