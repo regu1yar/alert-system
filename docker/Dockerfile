@@ -6,9 +6,6 @@ FROM ubuntu:latest as build
 ADD ./ /app/alert-system
 WORKDIR /app/build/
 
-RUN sysctl net.ipv4.conf.all.forwarding=1
-#RUN sudo iptables -P FORWARD ACCEPT
-
 RUN apt-get update && \
     apt-get install -y \
         g++ git wget tar make cmake \
@@ -69,7 +66,6 @@ RUN apt-get update && \
     && \
 # setting user
     groupadd -r alert_system && useradd -r -g alert_system alert_system
-RUN apt-get -qq -y install curl
 
 
 
