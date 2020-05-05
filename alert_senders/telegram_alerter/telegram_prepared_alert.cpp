@@ -9,6 +9,6 @@ std::string TelegramPreparedAlert::getChatId() {
 }
 
 TelegramPreparedAlert::TelegramPreparedAlert(std::string chat_id,
-                                             std::string text):
+                                             const std::string& text):
         chat_id_(chat_id),
         text_(text){}

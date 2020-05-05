@@ -16,16 +16,12 @@ using web::http::client::http_client;
 
 class TelegramSender: public Sender{
 public:
-    TelegramSender(std::string token): token_(token) {};
+    TelegramSender(const std::string& token): token_(token) {};
 
     TelegramSender(){};
-
-    void setToken(std::string token);
-
-    const std::string& getToken() const;
 
     void send(std::shared_ptr<PreparedAlert> prepared_alert) override;
 
 private:
-    std::string token_ = "1011512469:AAF28pOATldHJhuZBGV14ehNhBFeZVVw86w";
+    std::string token_{"1011512469:AAF28pOATldHJhuZBGV14ehNhBFeZVVw86w"};
 };

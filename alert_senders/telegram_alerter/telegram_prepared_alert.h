@@ -5,7 +5,7 @@
 
 class TelegramPreparedAlert: public PreparedAlert {
 public:
-    TelegramPreparedAlert(std::string chat_id, std::string text);
+    TelegramPreparedAlert(std::string chat_id, const std::string& text);
 
     std::string getChatId();
 

@@ -27,10 +27,10 @@ SET(TELEGRAMALERTCPPS
 SET(TELEGRAMALERTHS
         "${CMAKE_CURRENT_LIST_DIR}/abstract_sender.h"
         "${CMAKE_CURRENT_LIST_DIR}/alert.h"
-        "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/matrix_factory.h"
-        "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/matrix_prepared_alert.h"
-        "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/matrix_preparer.h"
-        "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/matrix_sender.h"
+        "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/telegram_factory.h"
+        "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/telegram_prepared_alert.h"
+        "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/telegram_preparer.h"
+        "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/telegram_sender.h"
         )
 
 target_sources(alert_senders
