@@ -1,0 +1,8 @@
+//
+// Created by Гросул Кирилл on 05/05/2020.
+//
+
+#ifndef ALERT_SYSTEM_TELEGRAM_FACTORY_H
+#define ALERT_SYSTEM_TELEGRAM_FACTORY_H
+
+#endif //ALERT_SYSTEM_TELEGRAM_FACTORY_H
