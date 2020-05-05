@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstdlib>
 #include <cpprest/http_client.h>
 #include <cpprest/filestream.h>
 #include <cpprest/uri.h>
@@ -23,5 +24,5 @@ public:
     void send(std::shared_ptr<PreparedAlert> prepared_alert) override;
 
 private:
-    std::string token_{"1011512469:AAF28pOATldHJhuZBGV14ehNhBFeZVVw86w"};
+    std::string token_{std::getenv("TELEGRAM_BOT_TOKEN")};
 };
