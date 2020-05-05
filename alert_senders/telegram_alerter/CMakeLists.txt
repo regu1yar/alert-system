@@ -3,6 +3,20 @@ target_sources(alert_system
         ${TELEGRAMALERTCPPS}
         PUBLIC
         ${TELEGRAMALERTHS}
-)
+        )
+
+add_executable(telegram_tester main.cpp)
+
+target_sources(telegram_tester
+        PRIVATE
+        ${TELEGRAMALERTCPPS}
+        PUBLIC
+        ${TELEGRAMALERTHS}
+        )
+
 
 target_include_directories(alert_system PUBLIC "${CMAKE_CURRENT_LIST_DIR}")
+target_include_directories(telegram_tester PUBLIC "${CMAKE_CURRENT_LIST_DIR}")
+target_include_directories(telegram_tester PUBLIC "${CMAKE_CURRENT_LIST_DIR}/../")
+
+my_target_link_cpprest(telegram_tester)

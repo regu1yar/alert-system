@@ -1,8 +1,11 @@
-//
-// Created by Гросул Кирилл on 05/05/2020.
-//
+#pragma once
 
-#ifndef ALERT_SYSTEM_TELEGRAM_PREPARER_H
-#define ALERT_SYSTEM_TELEGRAM_PREPARER_H
+#include "abstract_sender.h"
+#include <telegram_prepared_alert.h>
 
-#endif //ALERT_SYSTEM_TELEGRAM_PREPARER_H
+class TelegramPreparer: public Preparer{
+public:
+    TelegramPreparer(){};
+
+    std::shared_ptr<PreparedAlert> prepare(Alert alert) override;
+};

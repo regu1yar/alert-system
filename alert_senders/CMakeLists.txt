@@ -9,19 +9,28 @@ SET(MATRIXALERTCPPS
         )
 
 SET(MATRIXALERTHS
-        "${CMAKE_CURRENT_LIST_DIR}/abstract_sender.hpp"
+        "${CMAKE_CURRENT_LIST_DIR}/abstract_sender.h"
         "${CMAKE_CURRENT_LIST_DIR}/alert.h"
         "${CMAKE_CURRENT_LIST_DIR}/matrix_alerter/matrix_factory.h"
         "${CMAKE_CURRENT_LIST_DIR}/matrix_alerter/matrix_prepared_alert.h"
         "${CMAKE_CURRENT_LIST_DIR}/matrix_alerter/matrix_preparer.h"
         "${CMAKE_CURRENT_LIST_DIR}/matrix_alerter/matrix_sender.h"
         )
-
 SET(TELEGRAMALERTCPPS
-        "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/telegram.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/telegram_factory.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/telegram_prepared_alert.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/telegram_preparer.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/telegram_sender.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/alert.cpp"
         )
+
 SET(TELEGRAMALERTHS
-        "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/telegram.hpp"
+        "${CMAKE_CURRENT_LIST_DIR}/abstract_sender.h"
+        "${CMAKE_CURRENT_LIST_DIR}/alert.h"
+        "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/matrix_factory.h"
+        "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/matrix_prepared_alert.h"
+        "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/matrix_preparer.h"
+        "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter/matrix_sender.h"
         )
 
 target_sources(alert_senders
@@ -39,7 +48,7 @@ my_target_link_cpprest(alert_senders)
 
 target_sources(alert_system
         PUBLIC
-        ${CMAKE_CURRENT_LIST_DIR}/abstract_sender.hpp
+        ${CMAKE_CURRENT_LIST_DIR}/abstract_sender.h
 )
 
 target_include_directories(alert_system PUBLIC "${CMAKE_CURRENT_LIST_DIR}")

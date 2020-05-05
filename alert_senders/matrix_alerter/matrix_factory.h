@@ -3,7 +3,7 @@
 //
 
 #pragma once
-#include "abstract_sender.hpp"
+#include "abstract_sender.h"
 
 class MatrixFactory: public Factory{
 public:

@@ -1,8 +1,31 @@
-//
-// Created by Гросул Кирилл on 05/05/2020.
-//
+#pragma once
 
-#ifndef ALERT_SYSTEM_TELEGRAM_SENDER_H
-#define ALERT_SYSTEM_TELEGRAM_SENDER_H
+#include <cpprest/http_client.h>
+#include <cpprest/filestream.h>
+#include <cpprest/uri.h>
+#include <cpprest/json.h>
+#include <pplx/pplxtasks.h>
+#include "abstract_sender.h"
+#include "telegram_sender.h"
+#include "telegram_prepared_alert.h"
 
-#endif //ALERT_SYSTEM_TELEGRAM_SENDER_H
+using web::uri_builder;
+using web::http::methods;
+using web::http::http_response;
+using web::http::client::http_client;
+
+class TelegramSender: public Sender{
+public:
+    TelegramSender(std::string token): token_(token) {};
+
+    TelegramSender(){};
+
+    void setToken(std::string token);
+
+    const std::string& getToken() const;
+
+    void send(std::shared_ptr<PreparedAlert> prepared_alert) override;
+
+private:
+    std::string token_ = "1011512469:AAF28pOATldHJhuZBGV14ehNhBFeZVVw86w";
+};

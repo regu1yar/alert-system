@@ -74,12 +74,12 @@ endif ()
 
 add_executable(alert_system main.cpp)
 
-add_subdirectory(executables)
 add_subdirectory(third_party/etcd-cpp-apiv3)
 add_subdirectory(network)
 add_subdirectory(kapacitor_input)
 add_subdirectory(alert_senders)
 add_subdirectory(configurator)
+add_subdirectory(executables)
 
 target_link_libraries(alert_system network)
 target_link_libraries(alert_system kapacitor_input)

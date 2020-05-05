@@ -5,7 +5,7 @@
 #pragma once
 
 #include <string>
-#include "abstract_sender.hpp"
+#include "abstract_sender.h"
 
 class MatrixSender: public Sender {
 public:

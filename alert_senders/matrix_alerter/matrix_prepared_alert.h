@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "abstract_sender.hpp"
+#include "abstract_sender.h"
 #include <string>
 
 class MatrixPreparedAlert : public PreparedAlert

@@ -1,8 +1,14 @@
-//
-// Created by Гросул Кирилл on 05/05/2020.
-//
+#pragma once
 
-#ifndef ALERT_SYSTEM_TELEGRAM_FACTORY_H
-#define ALERT_SYSTEM_TELEGRAM_FACTORY_H
+#include "abstract_sender.h"
+#include <telegram_sender.h>
+#include <telegram_preparer.h>
 
-#endif //ALERT_SYSTEM_TELEGRAM_FACTORY_H
+class TelegramFactory: public Factory {
+public:
+    TelegramFactory();
+
+    std::shared_ptr<Sender> createSender() override;
+
+    std::shared_ptr<Preparer> createPreparer() override;
+};

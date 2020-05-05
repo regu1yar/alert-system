@@ -1,8 +1,17 @@
-//
-// Created by Гросул Кирилл on 05/05/2020.
-//
+#pragma once
 
-#ifndef ALERT_SYSTEM_TELEGRAM_PREPARED_ALERT_H
-#define ALERT_SYSTEM_TELEGRAM_PREPARED_ALERT_H
+#include <abstract_sender.h>
+#include <string>
 
-#endif //ALERT_SYSTEM_TELEGRAM_PREPARED_ALERT_H
+class TelegramPreparedAlert: public PreparedAlert {
+public:
+    TelegramPreparedAlert(std::string chat_id, std::string text);
+
+    std::string getChatId();
+
+    std::string getText();
+
+private:
+    std::string chat_id_;
+    std::string text_;
+};
