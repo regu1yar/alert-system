@@ -9,8 +9,8 @@
 #include <cpprest/uri.h>
 #include <matrix_alerter/matrix_factory.h>
 #include <alert.h>
-#include <telegram_alerter/telegram.hpp>
-#include "abstract_sender.hpp"
+#include <telegram_alerter/telegram_factory.h>
+#include "abstract_sender.h"
 
 void AlertHandler::handlePost(network::http_request message){
     auto alert_body_task = message.extract_json();
