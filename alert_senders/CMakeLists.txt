@@ -46,12 +46,5 @@ target_include_directories(alert_senders PUBLIC "${CMAKE_CURRENT_LIST_DIR}" "${C
 
 my_target_link_cpprest(alert_senders)
 
-target_sources(alert_system
-        PUBLIC
-        ${CMAKE_CURRENT_LIST_DIR}/abstract_sender.h
-)
-
-target_include_directories(alert_system PUBLIC "${CMAKE_CURRENT_LIST_DIR}")
-
 add_subdirectory(matrix_alerter)
 add_subdirectory(telegram_alerter)

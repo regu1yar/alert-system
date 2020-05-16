@@ -19,6 +19,7 @@ if(UNIX) # Darwing or Linux
   set(Boost_USE_MULTITHREADED TRUE)
   find_package(Boost REQUIRED COMPONENTS system thread log program_options chrono)
   find_package(cpprestsdk REQUIRED)
+  find_package(Protobuf REQUIRED)
 
 elseif(WIN32) # Windows systems including Win64.
   message(FATAL_ERROR "-- Windows is not supported for now.")
@@ -72,17 +73,17 @@ if (LINT)
   set(CMAKE_CXX_CLANG_TIDY clang-tidy;)
 endif ()
 
-add_executable(alert_system main.cpp)
+include_directories("${Protobuf_INCLUDE_DIRS}")
+include_directories("${CMAKE_CURRENT_BINARY_DIR}/proto")
 
 add_subdirectory(third_party/etcd-cpp-apiv3)
+add_subdirectory(proto)
+set_source_files_properties(
+        ${RootProtoSources} ${RootProtoHeaders}
+        PROPERTIES GENERATED TRUE
+)
 add_subdirectory(network)
-add_subdirectory(kapacitor_input)
 add_subdirectory(alert_senders)
+add_subdirectory(kapacitor_input)
 add_subdirectory(configurator)
 add_subdirectory(executables)
-
-target_link_libraries(alert_system network)
-target_link_libraries(alert_system kapacitor_input)
-target_link_libraries(alert_system alert_senders)
-
-my_target_link_cpprest(alert_system)

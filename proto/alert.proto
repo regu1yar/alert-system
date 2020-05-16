@@ -1,0 +1,7 @@
+syntax = "proto2";
+
+import "google/protobuf/timestamp.proto";
+
+message Alert {
+  required google.protobuf.Timestamp time = 1;
+}
