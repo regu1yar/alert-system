@@ -87,7 +87,7 @@ SeriesFieldParser::~SeriesFieldParser() {
 
 void SeriesFieldParser::parseField(const web::json::value &from, alert::Alert &to) const {
   if (!from.at("data").has_field("series")) {
-    throw std::runtime_exception("Field \"data\" has not nested field \"series\"");
+    throw std::runtime_error("Field \"data\" has not nested field \"series\"");
   }
 
   for (const auto& series_json : from.at("data").at("series").as_array()) {

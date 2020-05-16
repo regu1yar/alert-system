@@ -29,5 +29,3 @@ class AlertParser {
   static const std::unordered_set<std::string> REQUIRED_FIELDS;
   static const std::unordered_set<std::string> OPTIONAL_FIELDS;
 };
-
-

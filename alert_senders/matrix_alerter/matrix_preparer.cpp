@@ -1,13 +1,15 @@
-//
-// Created by Мхитарян Нарек on 14/04/2020.
-//
+#include <ctime>
+#include <memory>
 
-
-#include "alert.h"
+#include "alert.pb.h"
 #include "matrix_prepared_alert.h"
 #include "matrix_preparer.h"
 
+MatrixPreparer::MatrixPreparer() = default;
 
-std::shared_ptr<PreparedAlert> MatrixPreparer::prepare(Alert alert) {
-    return std::make_shared<MatrixPreparedAlert>(alert.chat_id, alert.text);
+std::shared_ptr<PreparedAlert> MatrixPreparer::prepare(alert::Alert alert) const {
+  char buffer[sizeof "YYYY-MM-DD HH:MM:SS"];
+  std::time_t ts(alert.time().seconds());
+  std::strftime(buffer, sizeof(buffer), "%F %T", std::localtime(&ts));
+  return std::make_shared<MatrixPreparedAlert>("Alert! At " + std::string(buffer) + '\n' + alert.DebugString());
 }

@@ -1,8 +1,9 @@
 #pragma once
 
 #include <memory>
+#include <string>
 
-class Alert;
+#include "alert.pb.h"
 
 class PreparedAlert{}; // virtual -> TelegramPreparedAlert, MatrixPreparedAlert...
 
@@ -13,11 +14,11 @@ public:
 
 class Preparer {
 public:
-    virtual std::shared_ptr<PreparedAlert> prepare(Alert alert) = 0;
+    virtual std::shared_ptr<PreparedAlert> prepare(alert::Alert alert) const = 0;
 };
 
 class Factory {
 public:
-    virtual std::shared_ptr<Sender> createSender() = 0;
-    virtual std::shared_ptr<Preparer> createPreparer() = 0;
+    virtual std::shared_ptr<Sender> createSender(const std::string& chat_id) const = 0;
+    virtual std::shared_ptr<Preparer> createPreparer() const = 0;
 };

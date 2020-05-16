@@ -1,14 +1,13 @@
 #pragma once
-//#include "TelegramAlert.h"
+
+#include "alert_parser.h"
 #include "handler.h"
 #include "router_controller.h"
 
 class AlertHandler : public network::Handler {
-public:
-    // /send_alert uri
-    void handlePost(network::http_request message) override;
+ public:
+  void handlePost(network::http_request message) override;
 
-private:
-    //TelegramAlert telegram;
-    //void send();
+ private:
+  AlertParser parser_;
 };

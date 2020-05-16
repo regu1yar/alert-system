@@ -1,5 +1,7 @@
 add_executable(telegram_tester main.cpp)
 
+add_proto_dependency(telegram_tester)
+
 target_sources(telegram_tester
         PRIVATE
         ${TELEGRAMALERTCPPS}

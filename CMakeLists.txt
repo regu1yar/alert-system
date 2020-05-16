@@ -78,10 +78,16 @@ include_directories("${CMAKE_CURRENT_BINARY_DIR}/proto")
 
 add_subdirectory(third_party/etcd-cpp-apiv3)
 add_subdirectory(proto)
-set_source_files_properties(
-        ${RootProtoSources} ${RootProtoHeaders}
-        PROPERTIES GENERATED TRUE
-)
+
+function(add_proto_dependency target_name)
+  set_source_files_properties(
+          ${RootProtoSources} ${RootProtoHeaders}
+          PROPERTIES GENERATED TRUE
+  )
+  add_dependencies(${target_name} root_proto_generating)
+  target_link_libraries(${target_name} ${Protobuf_LIBRARIES})
+endfunction()
+
 add_subdirectory(network)
 add_subdirectory(alert_senders)
 add_subdirectory(kapacitor_input)

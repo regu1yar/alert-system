@@ -1,17 +1,15 @@
 #pragma once
 
-#include <abstract_sender.h>
 #include <string>
+
+#include <abstract_sender.h>
 
 class TelegramPreparedAlert: public PreparedAlert {
 public:
-    TelegramPreparedAlert(std::string chat_id, const std::string& text);
+    explicit TelegramPreparedAlert(const std::string& text);
 
-    std::string getChatId();
-
-    std::string getText();
+    std::string getText() const;
 
 private:
-    std::string chat_id_;
     std::string text_;
 };

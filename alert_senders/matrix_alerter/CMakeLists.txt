@@ -1,5 +1,7 @@
 add_executable(matrix_tester main.cpp)
 
+add_proto_dependency(matrix_tester)
+
 target_sources(matrix_tester
         PRIVATE
         ${MATRIXALERTCPPS}
