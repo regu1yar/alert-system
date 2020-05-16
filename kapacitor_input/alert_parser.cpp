@@ -5,7 +5,7 @@
 
 const std::unordered_set<std::string> AlertParser::REQUIRED_FIELDS({"time"});
 const std::unordered_set<std::string> AlertParser::OPTIONAL_FIELDS({
-  "duration", "level", "previousLevel", "series"
+  "duration", "level", "previousLevel", "data"
 });
 
 
@@ -15,7 +15,7 @@ AlertParser::AlertParser()
                          {"duration", new DurationFieldParser()},
                          {"level", new LevelFieldParser()},
                          {"previousLevel", new PreviousLevelFieldParser()},
-                         {"series", new SeriesFieldParser()}
+                         {"data", new SeriesFieldParser()}
     }) {
 
 }
