@@ -3,7 +3,7 @@ set_source_files_properties(
         PROPERTIES GENERATED TRUE
 )
 
-add_library(kapacitor_input)
+add_library(kapacitor_input alert_parser.cpp alert_parser.h field_parsers.cpp field_parsers.h)
 
 add_dependencies(kapacitor_input root_proto_generating)
 
