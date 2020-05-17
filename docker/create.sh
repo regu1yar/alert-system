@@ -5,5 +5,4 @@ context=$( echo "$DIR/../")
 echo "Docker context: $context"
 
 docker build -t alert-system-build $context -f $DIR/Dockerfile
-docker rmi $(docker images -f "dangling=true" -q)
-
+#docker rmi $(docker images -f "dangling=true" -q)

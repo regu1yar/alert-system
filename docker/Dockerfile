@@ -50,7 +50,6 @@ RUN git submodule update --init && \
 WORKDIR /app/build/
 RUN cmake ../alert-system && \
     make test_full_delivery
-#    make router_example
 
 # Run -----------------------------------------------------
 
@@ -73,9 +72,7 @@ USER alert_system
 
 WORKDIR /app/
 COPY --from=build /app/build/executables/test_full_delivery .
-#COPY --from=build /app/build/network/server/examples/router_example/router_example .
 
 ENTRYPOINT ["./test_full_delivery"]
-#ENTRYPOINT ["./router_example"]
 
 

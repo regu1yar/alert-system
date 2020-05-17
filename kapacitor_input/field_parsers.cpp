@@ -54,7 +54,7 @@ DurationFieldParser::~DurationFieldParser() {
 void DurationFieldParser::parseField(const web::json::value &from, alert::Alert &to) const {
   auto duration = new google::protobuf::Duration();
   try {
-    duration->set_seconds(std::stoull(from.at("duration").as_string()));
+    duration->set_seconds(from.at("duration").as_integer());
     to.set_allocated_duration(duration);
   } catch (...) {
     delete duration;
