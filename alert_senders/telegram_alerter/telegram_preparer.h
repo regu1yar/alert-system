@@ -10,5 +10,5 @@ class TelegramPreparer : public Preparer {
  public:
   TelegramPreparer() {};
 
-  std::shared_ptr<PreparedAlert> prepare(alert::Alert alert) const override;
+  std::shared_ptr<PreparedAlert> prepare(const alert::Alert& alert) const override;
 };

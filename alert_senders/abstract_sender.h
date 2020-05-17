@@ -14,7 +14,7 @@ public:
 
 class Preparer {
 public:
-    virtual std::shared_ptr<PreparedAlert> prepare(alert::Alert alert) const = 0;
+    virtual std::shared_ptr<PreparedAlert> prepare(const alert::Alert& alert) const = 0;
 };
 
 class Factory {

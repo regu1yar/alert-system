@@ -8,5 +8,5 @@
 class MatrixPreparer : public Preparer {
  public:
   MatrixPreparer();
-  std::shared_ptr<PreparedAlert> prepare(alert::Alert alert) const override;
+  std::shared_ptr<PreparedAlert> prepare(const alert::Alert& alert) const override;
 };
