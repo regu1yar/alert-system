@@ -1,4 +1,8 @@
-add_library(alert_senders)
+add_library(alert_senders
+        "${CMAKE_CURRENT_LIST_DIR}/delivery_rules/delivery_rule.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/delivery_rules/default_delivery_rule.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/delivery_rules/delivery_rule_decorators.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/delivery_rules/filter_predicates.cpp")
 
 add_proto_dependency(alert_senders)
 
@@ -44,7 +48,13 @@ target_sources(alert_senders
         ${MATRIXALERTHS}
         )
 
-target_include_directories(alert_senders PUBLIC "${CMAKE_CURRENT_LIST_DIR}" "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter" "${CMAKE_CURRENT_LIST_DIR}/matrix_alerter")
+target_include_directories(alert_senders
+        PUBLIC
+        "${CMAKE_CURRENT_LIST_DIR}"
+        "${CMAKE_CURRENT_LIST_DIR}/telegram_alerter"
+        "${CMAKE_CURRENT_LIST_DIR}/matrix_alerter"
+        "${CMAKE_CURRENT_LIST_DIR}/delivery_rules"
+)
 
 my_target_link_cpprest(alert_senders)
 
