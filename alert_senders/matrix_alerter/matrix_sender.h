@@ -10,7 +10,7 @@ class MatrixSender : public Sender {
   MatrixSender(const std::string &chat_id, const std::string &token) :
       chat_id_(chat_id), token_(token) {};
 
-  explicit MatrixSender(const std::string &chat_id) {};
+  explicit MatrixSender(const std::string &chat_id) : chat_id_(chat_id) {};
 
   void setToken(const std::string &token);
 

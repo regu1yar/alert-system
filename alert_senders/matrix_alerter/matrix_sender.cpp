@@ -38,8 +38,9 @@ void MatrixSender::send(std::shared_ptr<PreparedAlert> prepared_alert) {
 
     return http_client(U("https://matrix-client.matrix.org/"))
         .request(methods::POST,
-                 uri_builder(U("_matrix")).append_path(U("client")).append_path(U("r0")).append_path(U("rooms")).append_path(
-                     room_id).append_path("send").append_path(my_token).to_string(),
+                 uri_builder(U("_matrix")).append_path(U("client")).append_path(U("r0"))
+                     .append_path(U("rooms")).append_path(room_id)
+                     .append_path("send").append_path(my_token).to_string(),
                  jsonObject);
   })
 
