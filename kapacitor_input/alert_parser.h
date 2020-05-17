@@ -9,22 +9,19 @@
 #include "alert.pb.h"
 #include "field_parsers.h"
 
-using alert::Alert;
-
 class AlertParser {
  public:
   AlertParser();
   ~AlertParser();
 
-  Alert parseJson(const web::json::value& json);
+  alert::Alert parseJson(const web::json::value& json) const;
 
  private:
-  void parseField(const std::string& field_name, const web::json::value &json);
-  void parseRequiredField(const std::string& field_name, const web::json::value &json);
+  void parseField(const std::string &field_name, const web::json::value &from, alert::Alert &to) const;
+  void parseRequiredField(const std::string &field_name, const web::json::value &from, alert::Alert &to) const;
 
  private:
   const std::unordered_map<std::string, FieldParser*> field_parsers_;
-  Alert alert_;
 
   static const std::unordered_set<std::string> REQUIRED_FIELDS;
   static const std::unordered_set<std::string> OPTIONAL_FIELDS;
