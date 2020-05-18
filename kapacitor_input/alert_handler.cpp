@@ -20,6 +20,9 @@ void AlertHandler::handlePost(network::http_request message) {
   alert_body_task.wait();
   web::json::value alert_body = alert_body_task.get();
 
+  factories["matrix"] = std::make_shared<MatrixFactory>();
+  factories["telegram"] = std::make_shared<TelegramFactory>();
+
   try {
     alert::Alert alert = parser_.parseJson(alert_body);
 
@@ -39,24 +42,28 @@ void AlertHandler::handlePost(network::http_request message) {
 
     auto recipient_list = ConfiguratorService().getRecipientByNotificationId(task_id);
 
+
     for(auto const& recipient: recipient_list)
     {
+      std::map <std::string, std::string> chat_id_mapping;
       if(recipient.getMatrixId() != "-")
       {
-        std::shared_ptr<Factory> factory = std::make_shared<MatrixFactory>();
-        auto preparer = factory->createPreparer();
-        auto prepared_alert = preparer->prepare(alert);
-        auto sender = factory->createSender(recipient.getMatrixId());
-        sender->send(prepared_alert);
+        chat_id_mapping[recipient.getMatrixId()] = "matrix";
+        std::cout << recipient.getMatrixId() << std::endl;
       }
       if(recipient.getTelegramChatId() != "-1")
       {
-        std::shared_ptr<Factory> factory = std::make_shared<TelegramFactory>();
-        auto preparer = factory->createPreparer();
+        chat_id_mapping[recipient.getTelegramChatId()] = "telegram";
+      }
+
+      for(auto it = chat_id_mapping.begin(); it != chat_id_mapping.end(); ++it)
+      {
+        auto preparer = factories[it->second]->createPreparer();
         auto prepared_alert = preparer->prepare(alert);
-        auto sender = factory->createSender(recipient.getTelegramChatId());
+        auto sender = factories[it->second]->createSender(it->first);
         sender->send(prepared_alert);
       }
+
     }
 
     std::cerr << "SENT!" << std::endl;
