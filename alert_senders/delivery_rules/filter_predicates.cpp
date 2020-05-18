@@ -250,3 +250,52 @@ bool HasMetricPredicate::isTrue(const alert::Alert &alert) const {
 
   return false;
 }
+
+EqualsLevelPredicate::EqualsLevelPredicate(alert::Level level) : level_(level) {
+
+}
+
+EqualsLevelPredicate::~EqualsLevelPredicate() {
+
+}
+
+bool EqualsLevelPredicate::isTrue(const alert::Alert &alert) const {
+  return alert.has_level() && alert.level() == level_;
+}
+
+EqualsSubscriptionIdPredicate::EqualsSubscriptionIdPredicate(const std::string &value) : value_(value) {
+
+}
+
+EqualsSubscriptionIdPredicate::~EqualsSubscriptionIdPredicate() {
+
+}
+
+bool EqualsSubscriptionIdPredicate::isTrue(const alert::Alert &alert) const {
+  for (const auto& series : alert.series()) {
+    if (series.has_subscription_id() && series.subscription_id() == value_) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+
+NotEqualsSubscriptionIdPredicate::NotEqualsSubscriptionIdPredicate(const std::string &value) : value_(value) {
+
+}
+
+NotEqualsSubscriptionIdPredicate::~NotEqualsSubscriptionIdPredicate() {
+
+}
+
+bool NotEqualsSubscriptionIdPredicate::isTrue(const alert::Alert &alert) const {
+  for (const auto& series : alert.series()) {
+    if (series.has_subscription_id() && series.subscription_id() != value_) {
+      return true;
+    }
+  }
+
+  return false;
+}

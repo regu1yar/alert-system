@@ -192,3 +192,42 @@ class HasMetricPredicate : public FilterPredicate {
  private:
   std::string metric_name_;
 };
+
+
+class EqualsLevelPredicate : public FilterPredicate {
+ public:
+  explicit EqualsLevelPredicate(alert::Level level);
+
+  ~EqualsLevelPredicate() override;
+
+  bool isTrue(const alert::Alert& alert) const override;
+
+ private:
+  alert::Level level_;
+};
+
+
+class EqualsSubscriptionIdPredicate : public FilterPredicate {
+ public:
+  explicit EqualsSubscriptionIdPredicate(const std::string& value);
+
+  ~EqualsSubscriptionIdPredicate() override;
+
+  bool isTrue(const alert::Alert& alert) const override;
+
+ private:
+  std::string value_;
+};
+
+
+class NotEqualsSubscriptionIdPredicate : public FilterPredicate {
+ public:
+  explicit NotEqualsSubscriptionIdPredicate(const std::string& value);
+
+  ~NotEqualsSubscriptionIdPredicate() override;
+
+  bool isTrue(const alert::Alert& alert) const override;
+
+ private:
+  std::string value_;
+};
