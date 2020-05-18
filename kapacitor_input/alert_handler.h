@@ -9,9 +9,10 @@
 
 class AlertHandler : public network::Handler {
  public:
+  explicit AlertHandler();
   void handlePost(network::http_request message) override;
 
  private:
   AlertParser parser_;
-  std::map <std::string, std::shared_ptr<Factory> > factories;
+  const std::map <std::string, std::shared_ptr<Factory> > factories_;
 };
