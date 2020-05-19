@@ -22,7 +22,7 @@ class NegationFilterPredicate : public FilterPredicate {
   bool isTrue(const alert::Alert& alert) const override;
 
  private:
-  std::shared_ptr<FilterPredicate> operand_predicate_;
+  const std::shared_ptr<FilterPredicate> operand_predicate_;
 };
 
 
@@ -36,8 +36,8 @@ class AndFilterPredicate : public FilterPredicate {
   bool isTrue(const alert::Alert& alert) const override;
 
  private:
-  std::shared_ptr<FilterPredicate> first_operand_predicate_;
-  std::shared_ptr<FilterPredicate> second_operand_predicate_;
+  const std::shared_ptr<FilterPredicate> first_operand_predicate_;
+  const std::shared_ptr<FilterPredicate> second_operand_predicate_;
 };
 
 
@@ -51,8 +51,8 @@ class OrFilterPredicate : public FilterPredicate {
   bool isTrue(const alert::Alert& alert) const override;
 
  private:
-  std::shared_ptr<FilterPredicate> first_operand_predicate_;
-  std::shared_ptr<FilterPredicate> second_operand_predicate_;
+  const std::shared_ptr<FilterPredicate> first_operand_predicate_;
+  const std::shared_ptr<FilterPredicate> second_operand_predicate_;
 };
 
 
@@ -65,8 +65,8 @@ class EqualsTagPredicate : public FilterPredicate {
   bool isTrue(const alert::Alert& alert) const override;
 
  private:
-  std::string tag_;
-  std::string value_;
+  const std::string tag_;
+  const std::string value_;
 };
 
 
@@ -79,8 +79,8 @@ class NotEqualsTagPredicate : public FilterPredicate {
   bool isTrue(const alert::Alert& alert) const override;
 
  private:
-  std::string tag_;
-  std::string value_;
+  const std::string tag_;
+  const std::string value_;
 };
 
 
@@ -93,7 +93,7 @@ class HasTagPredicate : public FilterPredicate {
   bool isTrue(const alert::Alert& alert) const override;
 
  private:
-  std::string tag_;
+  const std::string tag_;
 };
 
 
@@ -106,8 +106,8 @@ class EqualsMetricPredicate : public FilterPredicate {
   bool isTrue(const alert::Alert& alert) const override;
 
  private:
-  std::string metric_name_;
-  double value_;
+  const std::string metric_name_;
+  const double value_;
 };
 
 
@@ -120,8 +120,8 @@ class NotEqualsMetricPredicate : public FilterPredicate {
   bool isTrue(const alert::Alert& alert) const override;
 
  private:
-  std::string metric_name_;
-  double value_;
+  const std::string metric_name_;
+  const double value_;
 };
 
 
@@ -134,8 +134,8 @@ class LessMetricPredicate : public FilterPredicate {
   bool isTrue(const alert::Alert& alert) const override;
 
  private:
-  std::string metric_name_;
-  double threshold_value_;
+  const std::string metric_name_;
+  const double threshold_value_;
 };
 
 
@@ -148,8 +148,8 @@ class GreaterMetricPredicate : public FilterPredicate {
   bool isTrue(const alert::Alert& alert) const override;
 
  private:
-  std::string metric_name_;
-  double threshold_value_;
+  const std::string metric_name_;
+  const double threshold_value_;
 };
 
 
@@ -162,8 +162,8 @@ class LessOrEqualsMetricPredicate : public FilterPredicate {
   bool isTrue(const alert::Alert& alert) const override;
 
  private:
-  std::string metric_name_;
-  double threshold_value_;
+  const std::string metric_name_;
+  const double threshold_value_;
 };
 
 
@@ -176,8 +176,8 @@ class GreaterOrEqualsMetricPredicate : public FilterPredicate {
   bool isTrue(const alert::Alert& alert) const override;
 
  private:
-  std::string metric_name_;
-  double threshold_value_;
+  const std::string metric_name_;
+  const double threshold_value_;
 };
 
 
@@ -190,7 +190,7 @@ class HasMetricPredicate : public FilterPredicate {
   bool isTrue(const alert::Alert& alert) const override;
 
  private:
-  std::string metric_name_;
+  const std::string metric_name_;
 };
 
 
@@ -203,7 +203,7 @@ class EqualsLevelPredicate : public FilterPredicate {
   bool isTrue(const alert::Alert& alert) const override;
 
  private:
-  alert::Level level_;
+  const alert::Level level_;
 };
 
 
@@ -216,7 +216,7 @@ class EqualsSubscriptionIdPredicate : public FilterPredicate {
   bool isTrue(const alert::Alert& alert) const override;
 
  private:
-  std::string value_;
+  const std::string value_;
 };
 
 
@@ -229,5 +229,5 @@ class NotEqualsSubscriptionIdPredicate : public FilterPredicate {
   bool isTrue(const alert::Alert& alert) const override;
 
  private:
-  std::string value_;
+  const std::string value_;
 };

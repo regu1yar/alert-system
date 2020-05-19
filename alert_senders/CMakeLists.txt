@@ -1,8 +1,4 @@
-add_library(alert_senders
-        "${CMAKE_CURRENT_LIST_DIR}/delivery_rules/delivery_rule.cpp"
-        "${CMAKE_CURRENT_LIST_DIR}/delivery_rules/default_delivery_rule.cpp"
-        "${CMAKE_CURRENT_LIST_DIR}/delivery_rules/delivery_rule_decorators.cpp"
-        "${CMAKE_CURRENT_LIST_DIR}/delivery_rules/filter_predicates.cpp")
+add_library(alert_senders)
 
 add_proto_dependency(alert_senders)
 
@@ -39,10 +35,18 @@ SET(TELEGRAMALERTHS
         "${RootProtoHeaders}"
         )
 
+set(DELIVERY_RULES_SRCS
+        "${CMAKE_CURRENT_LIST_DIR}/delivery_rules/delivery_rule.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/delivery_rules/default_delivery_rule.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/delivery_rules/delivery_rule_decorators.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/delivery_rules/filter_predicates.cpp"
+)
+
 target_sources(alert_senders
         PRIVATE
         ${MATRIXALERTCPPS}
         ${TELEGRAMALERTCPPS}
+        ${DELIVERY_RULES_SRCS}
         PUBLIC
         ${TELEGRAMALERTHS}
         ${MATRIXALERTHS}
