@@ -61,7 +61,7 @@ void AlertHandler::handlePost(network::http_request message) {
     std::string level_id = "1";
 
     //TODO uncomment this when task_id is ready
-    //level_id = alert_body.at("level_id").as_string();
+    level_id = alert_body.at("level_id").as_string();
 
     auto recipient_list = ConfiguratorService().getRecipientByNotificationId(level_id);
 
