@@ -8,10 +8,10 @@
 std::vector<Recipient> ConfiguratorService::getRecipientByNotificationId(const std::string & notification_id) {
   auto request_string = web::uri_builder(U("/api"))
           .append_path("notifications")
-          .append_path("?task_id=")
-          .append_path(notification_id)
+          .append_path("?level_id=")
           .to_string();
 
+  request_string += notification_id;
   auto recipients_request = pplx::create_task([=](){ return makeRequest(request_string); })
           .then([=](web::http::http_response response){
             if (response.status_code() >= 400) {
@@ -40,6 +40,5 @@ std::vector<Recipient> ConfiguratorService::getRecipientByNotificationId(const s
 }
 
 pplx::task<web::http::http_response> ConfiguratorService::makeRequest(const std::string & request_string) {
-
   return web::http::client::http_client(U(CONFIGURATOR_HOST)).request(web::http::methods::GET, request_string);
 }
